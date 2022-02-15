@@ -6,12 +6,16 @@ package Life;
 public class nextGen {
 
     private lifeBoard life = new lifeBoard();
-    private print print = new print();
+    private Print print = new Print();
 
     private char gridCurrent[][];
     private char gridNext[][];
 
     private int generation;
+
+    public nextGen(){
+
+    }
 
     /**
      * Generates the initial board and printout
@@ -23,6 +27,12 @@ public class nextGen {
         gridCurrent = life.generateStartingBoard(size);
 
         gridNext = life.generateStartingBoard(size);
+    }
+
+
+    public nextGen(char[][] gridCurrent) {
+        this.gridCurrent = gridCurrent;
+    
         // update cells
         gridNext = life.isDead(gridNext, 1, 2);
         gridNext = life.isDead(gridNext, 2, 2);
@@ -38,7 +48,7 @@ public class nextGen {
         gridNext = life.isLive(gridNext, 11, 12);
 
         generation = 2;
-        gridNext = life.Step(gridNext, 5, 9);
+        gridNext = life.Step(this.gridCurrent,2,4 );
 
         // Headers
         System.out.println("Conway's Game of Life");
@@ -52,6 +62,7 @@ public class nextGen {
         System.out.println(generation + "\n");
         System.out.println(print.toString(gridNext));
     }
+
 
     // Testing class for checking arrays, erase once everything's working
     public void test() {
