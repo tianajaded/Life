@@ -33,6 +33,9 @@ public class lifeBoard extends JFrame {
 
     }
 
+    public lifeBoard() {
+    }
+
     /**
      * Generates board with starting cells
      * 
@@ -142,7 +145,7 @@ public class lifeBoard extends JFrame {
     }
 
     // goes from one board to next
-    public Step(char grid[][], int x, int y) {
+    public char[][] Step(char grid[][], int x, int y) {
 
         if (x > grid.length || y > grid[0].length) {
             throw new IndexOutOfBoundsException("Index is out of bounds!");
@@ -151,9 +154,9 @@ public class lifeBoard extends JFrame {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length - 1; j++) {
 
-                int AliveNeighbors = countAliveNeighbors(grid[x][y], x, y);
+                int AliveNeighbors = countAliveNeighbors(x, y);
 
-                if (isLive(x,y)==1) {
+                if (isLive(x, y) == 1) {
                     if (AliveNeighbors < 2) {
                         // if amount of live cells around is less than two it dies
                         grid[i][j] = dead;
@@ -169,8 +172,10 @@ public class lifeBoard extends JFrame {
                         grid[i][j] = live;
                     }
                 }
+                return grid;
 
             }
+            return grid;
 
         }
         return grid;
