@@ -13,10 +13,6 @@ public class nextGen {
 
     private int generation;
 
-    public nextGen(){
-
-    }
-
     /**
      * Generates the initial board and printout
      */
@@ -27,42 +23,54 @@ public class nextGen {
         gridCurrent = life.generateStartingBoard(size);
 
         gridNext = life.generateStartingBoard(size);
-    }
-
-
-    public nextGen(char[][] gridCurrent) {
-        this.gridCurrent = gridCurrent;
-    
         // update cells
-        gridNext = life.isDead(gridNext, 1, 2);
-        gridNext = life.isDead(gridNext, 2, 2);
-        gridNext = life.isDead(gridNext, 15, 2);
-        gridNext = life.isDead(gridNext, 14, 4);
-        gridNext = life.isDead(gridNext, 12, 11);
-        gridNext = life.isDead(gridNext, 12, 13);
-        gridNext = life.isLive(gridNext, 16, 3);
-        gridNext = life.isLive(gridNext, 16, 4);
-        gridNext = life.isLive(gridNext, 15, 5);
-        gridNext = life.isLive(gridNext, 14, 3);
-        gridNext = life.isLive(gridNext, 13, 12);
-        gridNext = life.isLive(gridNext, 11, 12);
-
-        generation = 2;
-        gridNext = life.Step(this.gridCurrent,2,4 );
+        gridNext = life.setDead(2, 3);
+        gridNext = life.setDead(3, 3);
+        gridNext = life.setDead(15, 3);
+        gridNext = life.setDead(14, 5);
+        gridNext = life.setDead(12, 12);
+        gridNext = life.setDead(12, 14);
+        gridNext = life.setAlive(16, 5);
+        gridNext = life.setAlive(15, 6);
+        gridNext = life.setAlive(15, 5);
+        gridNext = life.setAlive(14, 4);
+        gridNext = life.setAlive(13, 13);
+        gridNext = life.setAlive(11, 13);
 
         // Headers
         System.out.println("Conway's Game of Life");
-
-        System.out.println("\nCurrent Generation: " + generation + "\n");
-
         // print does the 'toString' override formatting stuff
         System.out.println(print.toString(gridCurrent));
         System.out.println("\n");
+        generation = 2;
 
-        System.out.println(generation + "\n");
+        System.out.println("\nCurrent Generation: " + generation + "\n");
+
+        // System.out.println(generation + "\n");
         System.out.println(print.toString(gridNext));
-    }
 
+        generation = 3;
+        System.out.println(generation + "\n");
+        gridNext = life.Step();
+        System.out.println(print.toString(gridNext));
+        generation = 4;
+        System.out.println(generation + "\n");
+        gridNext = life.Step();
+        System.out.println(print.toString(gridNext));
+        generation = 5;
+        System.out.println(generation + "\n");
+        gridNext = life.Step();
+        System.out.println(print.toString(gridNext));
+        generation = 6;
+        System.out.println(generation + "\n");
+        gridNext = life.Step();
+        System.out.println(print.toString(gridNext));
+        generation = 7;
+        System.out.println(generation + "\n");
+        gridNext = life.Step();
+        System.out.println(print.toString(gridNext));
+
+    }
 
     // Testing class for checking arrays, erase once everything's working
     public void test() {
