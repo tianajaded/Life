@@ -1,14 +1,9 @@
 package Life;
 
-import java.util.Arrays;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-
 /**
  * Description: lifeBoard manages constructing and modifying the game boards
  */
-public class lifeBoard extends JFrame {
+public class lifeBoard {
     // Character array for the Life board
     private char grid[][];
     // Displayed dead and live print characters
@@ -31,9 +26,6 @@ public class lifeBoard extends JFrame {
         // return grid
         return grid;
 
-    }
-
-    public lifeBoard() {
     }
 
     /**
@@ -79,7 +71,7 @@ public class lifeBoard extends JFrame {
         // Iterate through the above array and update the live cells at the coordinates
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
-                grid = isLive(grid, cells[i][j][0], cells[i][j][1]);
+                grid = setAlive(cells[i][j][0], cells[i][j][1]);
 
             }
         }
@@ -90,17 +82,18 @@ public class lifeBoard extends JFrame {
     /**
      * Description: Marks a character in the grid as live
      *
-     * @param grid Input grid
-     * @param x    Input row to be modified
-     * @param x    Input column to be modified
+     * 
+     * @param x Input row to be modified
+     * @param x Input column to be modified
      * @return grid
      */
-    public char[][] isLive(char grid[][], int x, int y) {
+    public char[][] setAlive(int x, int y) {
         // Throw OOB exception
         if (x > grid.length || y > grid[0].length) {
             throw new IndexOutOfBoundsException("Index is out of bounds!");
         }
         grid[x][y] = live;
+        // live = "O";
         return grid;
     }
 
@@ -112,52 +105,67 @@ public class lifeBoard extends JFrame {
      * @param x    Input column to be modified
      * @return grid
      */
-    public char[][] isDead(char grid[][], int x, int y) {
+    public char[][] setDead(int x, int y) {
         // Throw OOB exception
         if (x > grid.length || y > grid[0].length) {
             throw new IndexOutOfBoundsException("Index is out of bounds!");
         }
+
         grid[x][y] = dead;
+        // dead = ".";
         return grid;
     }
 
+    // method so you can check to see if a cell is dead or alive
+    public int isAlive(int x, int y) {
+        if (x <= 0 || y <= 0 || x >= grid.length || y >= grid.length) {
+            return 0;
+        }
+        if (grid[x][y] == live) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
     // method to count neighboring cells
-    public int countAliveNeighbors(char grid[][], int x, int y) {
+    public int countAliveNeighbors(int x, int y) {
 
         int count = 0;
         // the center of the board is [i][j].
         // we need to check all the surrounding cells
 
-        // top left cell, etc
-        count += isLive(grid[x][y], x - 1, y - 1);
-        count += isLive(grid[x][y], x - 1, y);
-        count += isLive(grid[x][y], x - 1, y + 1);
-
-        count += isLive(grid[x][y], x, y - 1);
-        // Cell5 in the middle of a 3x3 square of cells.
-        count += isLive(grid[x][y], x, y + 1);
-
-        count += isLive(grid[x][y], x + 1, y - 1);
-        count += isLive(grid[x][y], x + 1, y);
-        count += isLive(grid[x][y], x + 1, y + 1);
+        // top left cell
+        count += isAlive(x - 1, y - 1);
+        // same row left
+        count += isAlive(x, y - 1);
+        // left below
+        count += isAlive(x + 1, y - 1);
+        // same above
+        count += isAlive(x - 1, y);
+        // same col below
+        count += isAlive(x + 1, y);
+        // right above
+        count += isAlive(x - 1, y + 1);
+        // same row right
+        count += isAlive(x, y + 1);
+        // right below
+        count += isAlive(x + 1, y + 1);
 
         return count;
     }
 
     // goes from one board to next
-    public char[][] Step(char grid[][], int x, int y) {
+    public char[][] Step() {
 
-        if (x > grid.length || y > grid[0].length) {
-            throw new IndexOutOfBoundsException("Index is out of bounds!");
-        }
         // iterate thru the arrays
         for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length - 1; j++) {
+            for (int j = 0; j < grid[i].length; j++) {
 
-                int AliveNeighbors = countAliveNeighbors(x, y);
+                int AliveNeighbors = countAliveNeighbors(i, j);
 
-                if (isLive(x, y) == 1) {
-                    if (AliveNeighbors < 2) {
+                if (isAlive(i, j) ==1) {
+                    if (AliveNeighbors < 2 || AliveNeighbors > 4) {
                         // if amount of live cells around is less than two it dies
                         grid[i][j] = dead;
                     }
@@ -167,15 +175,7 @@ public class lifeBoard extends JFrame {
 
                 } else if (AliveNeighbors > 3) {
                     grid[i][j] = dead;
-                } else {
-                    if (AliveNeighbors == 3) {
-                        grid[i][j] = live;
-                    }
-                }
-                return grid;
-
-            }
-            return grid;
+            }}
 
         }
         return grid;
