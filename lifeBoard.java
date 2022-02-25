@@ -166,17 +166,17 @@ public class lifeBoard {
 
                 if (isAlive(i, j) == 1) {
                     if (AliveNeighbors < 2 || AliveNeighbors > 3) {
-                        // if amount of live cells around is less than two it dies
+                        // if amount of live cells around is less than two or bigger than 4 it dies
                         grid[i][j] = dead;
                     }
-                    // else it is alive
-                } else if (AliveNeighbors == 2 || AliveNeighbors == 3) {
+                } else if (AliveNeighbors == 3) {
                     grid[i][j] = live;
-                }
 
+                }
             }
 
         }
+
         return grid;
     }
 }
