@@ -1,11 +1,17 @@
+/*
+ * Name: Elisha Phillips
+ * Name: Tiana Noll-Walker
+ * Date: 02/26/2022
+ * Course: CPT_S 132 Section 01, Spring 22
+ * Assignment: HW6 - LifeGUI
+ * Description: Calculates John Conway's Game of Life and prints GUI
+ * Grade Level: Challenge
+ */
+
 package Life;
 
-import java.awt.*;
-
 /**
- * Description: Component Class for the 'Blank' marker
- *
- * Cell jbutton obj
+ * the lifecell class extends JButton
  */
 public class lifeCell extends javax.swing.JButton {
     // Default fields, assigns to default color values
@@ -13,13 +19,12 @@ public class lifeCell extends javax.swing.JButton {
     private java.awt.Color backgroundColor = new java.awt.Color(255, 255, 255);
 
     /**
-     * preferred size, defaults etc
+     * set preferred size, defaults etc
      */
     public lifeCell(java.awt.Color backgroundColor) {
-        setPreferredSize(new java.awt.Dimension(25, 25));
+        setPreferredSize(new java.awt.Dimension(50, 50));
         setContentAreaFilled(false);
-        setBorderPainted(false);
-        setBackground(backgroundColor);
+        setBorderPainted(true);
         setOpaque(true);
 
     }
@@ -41,6 +46,7 @@ public class lifeCell extends javax.swing.JButton {
     public void setLineColor(java.awt.Color rgb) {
         lineColor = rgb;
         repaint();
+        
     }
 
     /**
@@ -70,12 +76,10 @@ public class lifeCell extends javax.swing.JButton {
     @Override
     public void paintComponent(java.awt.Graphics g) {
         // Inherits paintComponent
-        super.paintComponent(g);
-
-        // Sets the background color for the rectangle
-        g.setColor(backgroundColor);
+        super.paintComponent(g);   
         // Draws a borderless rectangle to fill the component cell
         g.fillRect(0, 0, getWidth(), getHeight());
-
+        // Sets the background color for the rectangle
+        g.setColor(backgroundColor);
     }
 }

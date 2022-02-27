@@ -1,3 +1,13 @@
+/*
+ * Name: Elisha Phillips
+ * Name: Tiana Noll-Walker
+ * Date: 02/26/2022
+ * Course: CPT_S 132 Section 01, Spring 22
+ * Assignment: HW6 - LifeGUI
+ * Description: Calculates John Conway's Game of Life and prints GUI
+ * Grade Level: Challenge
+ */
+
 package Life;
 
 import java.util.*;
@@ -85,6 +95,11 @@ public class lifePrint {
         return boardStr;
     }
 
+    /**
+     * constructor that draws the window with buttons
+     * 
+     * @param gridList the gridlist array for the cells
+     */
     public void GUI(ArrayList<int[][]> gridList) {
         // Draw window
         btn.drawGridLayout(gridList.get(0));
@@ -92,11 +107,4 @@ public class lifePrint {
 
     }
 
-    public static void wait(int ms) {
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
 }

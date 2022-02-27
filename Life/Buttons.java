@@ -1,3 +1,13 @@
+/*
+ * Name: Elisha Phillips
+ * Name: Tiana Noll-Walker
+ * Date: 02/26/2022
+ * Course: CPT_S 132 Section 01, Spring 22
+ * Assignment: HW6 - LifeGUI
+ * Description: Calculates John Conway's Game of Life and prints GUI
+ * Grade Level: Challenge
+ */
+
 package Life;
 
 import javax.swing.*;
@@ -6,8 +16,8 @@ import java.util.ArrayList;
 
 /**
  * This class constructs the buttons and displays them on the lifeGui.
- * When the buttons are pressed, it iterates backwards and forwards through each
- * generation.
+ * When the buttons are pressed, it iterates backwards and forwards through &*
+ * each generation.
  */
 public class Buttons extends lifeGUI {
 
@@ -45,6 +55,11 @@ public class Buttons extends lifeGUI {
         });
     }
 
+    /**
+     * method to get the grid
+     * 
+     * @param l the gridlist
+     */
     public void retrieveGrid(ArrayList<int[][]> l) {
         gridList = l;
         length = gridList.size() - 1;
@@ -58,9 +73,9 @@ public class Buttons extends lifeGUI {
         genCount = nextIndex(genCount);
 
         // update next button text
-        nextButton.setText(">> " + String.valueOf(nextIndex(genCount)));
+        nextButton.setText("next >> " + String.valueOf(nextIndex(genCount)));
         // update previous button text
-        prevButton.setText(String.valueOf(prevIndex(genCount)) + " <<");
+        prevButton.setText(String.valueOf(prevIndex(genCount)) + " << prev");
 
         // Set next generation
         // System.out.println(gridList.get(genCount));
@@ -76,12 +91,11 @@ public class Buttons extends lifeGUI {
         genCount = prevIndex(genCount);
 
         // update next button text
-        nextButton.setText(">> " + String.valueOf(nextIndex(genCount)));
+        nextButton.setText("next >> " + String.valueOf(nextIndex(genCount)));
         // update previous button text
-        prevButton.setText(String.valueOf(genCount) + " <<");
+        prevButton.setText(String.valueOf(genCount) + " << prev");
 
         // Set prev generation
-        // System.out.println(gridList.get(genCount));
         super.updateGridLayout(gridList.get(genCount));
     }
 

@@ -1,9 +1,19 @@
+/*
+ * Name: Elisha Phillips
+ * Name: Tiana Noll-Walker
+ * Date: 02/26/2022
+ * Course: CPT_S 132 Section 01, Spring 22
+ * Assignment: HW6 - LifeGUI
+ * Description: Calculates John Conway's Game of Life and prints GUI
+ * Grade Level: Challenge
+ */
+
 package Life;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.util.*;
+import java.awt.BorderLayout;
 
 /**
  * Description: GUI Class for the lifeBoard
@@ -19,38 +29,41 @@ public class lifeGUI {
     static ArrayList<Label> label = new ArrayList<Label>();
 
     // Background color for the layout, will form the board's gridlines
-    private static final Color live = Color.black;
-    private static final Color dead = Color.white;
+    private static final Color live = Color.WHITE;
+    private static final Color dead = Color.BLACK;
 
+    /**
+     * Constructor for the GUI, constructs a JFrame to display window
+     */
     public lifeGUI() {
         // Main Window
-        win = new javax.swing.JFrame("Life");
+        win = new javax.swing.JFrame("Game of Life");
         // Content Panel
         c = win.getContentPane();
         c.setLayout(new BorderLayout());
-        // c.add(Buttons.toolbar, BorderLayout.NORTH);
 
         // Assigning default window parameters
         win.setLocation(50, 50);
-        win.setSize(1000, 1000);
+        win.setSize(500, 500);
         win.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        win.toBack();
         win.setVisible(true);
-        win.toFront();
 
     }
 
     /**
-     * Constructor for layout objects
+     * Constructor to that draws the grid layout via an internal JFrame
+     * 
+     * @param gridArr the grid array of cells to be displayed
      */
     public void drawGridLayout(int[][] gridArr) {
         int x = gridArr.length;
 
         JInternalFrame grid = new JInternalFrame();
         grid.pack();
-        grid.setVisible(true);
-
-        grid.setBackground(live);
+        grid.setBackground(dead);
         grid.setLayout(new GridBagLayout());
+        grid.setVisible(true);
 
         GridBagConstraints gc = new GridBagConstraints();
         gc.weightx = 1d;
@@ -63,7 +76,7 @@ public class lifeGUI {
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < x; j++) {
                 Label l = new Label();
-                l.setBackground(dead);
+                // l.setBackground(dead);
                 gc.gridx = i;
                 gc.gridy = j;
                 grid.add(l, gc);
@@ -76,6 +89,12 @@ public class lifeGUI {
         c.add(grid, BorderLayout.CENTER);
 
     }
+
+    /**
+     * Constructor to update the grid layout with live or dead cells
+     * 
+     * @param gridArr the grid array of cells to be displayed
+     */
 
     public void updateGridLayout(int[][] gridArr) {
 

@@ -1,10 +1,10 @@
 /*
  * Name: Elisha Phillips
  * Name: Tiana Noll-Walker
- * Date: 02/16/2022
+ * Date: 02/26/2022
  * Course: CPT_S 132 Section 01, Spring 22
- * Assignment: HW5 - Life
- * Description: Calculates John Conway's Game of Life and prints the grid in terminal
+ * Assignment: HW6 - LifeGUI
+ * Description: Calculates John Conway's Game of Life and prints GUI
  * Grade Level: Challenge
  */
 
