@@ -9,6 +9,7 @@
  */
 
 package Life;
+
 /**
  * Main class to run the Game of Life in the user's terminal. User
  * can input parameters for the size of the grid, and number of generations to
@@ -20,7 +21,7 @@ package Life;
 public class Life {
 
     public static void main(String[] args) {
-        //Instantiates lifeGen and calls method to begin the game sequence
+        // Instantiates lifeGen and calls method to begin the game sequence
         lifeGen game = new lifeGen();
         game.initiateGame();
 

@@ -9,7 +9,9 @@
  */
 
 package Life;
+
 import java.util.ArrayList;
+
 /**
  * lifeGen class is the central game engine, containing the user interface
  * and calls the game methods
@@ -25,7 +27,6 @@ public class lifeGen {
 
     // Default for minimum grid size
     private int minSize = 19;
-
 
     /**
      * Starts the game, and obtains user params for grid size and
@@ -46,7 +47,7 @@ public class lifeGen {
         System.out.println("\nWhat size would you like the board to be?");
         System.out.println("Minimum size is " + minSize + ": \n");
         // Method for user input
-        int size = print.input(minSize-1);
+        int size = print.input(minSize - 1);
 
         // Method to run game with user-defined parameters
         runGame(gen, size);
@@ -55,7 +56,7 @@ public class lifeGen {
     /**
      * Calculates and prints successive generations of the game board
      *
-     * @param gen integer value determines number of generations to calculate
+     * @param gen  integer value determines number of generations to calculate
      *
      * @param size integer value determines height and width of square array
      *             shape: (size, size)
@@ -69,7 +70,7 @@ public class lifeGen {
         int grid[][] = life.generateStartingBoard(size);
 
         // Loop through each generation
-        for (int i=0;i<gen;i++) {
+        for (int i = 0; i < gen; i++) {
 
             // Method to calculate board's next generation
             if (i > 1) {

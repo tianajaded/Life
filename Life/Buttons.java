@@ -1,26 +1,24 @@
 package Life;
 
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
- * This is a simple client for the BigOval class
+ * This class constructs the buttons and displays them on the lifeGui.
+ * When the buttons are pressed, it iterates backwards and forwards through each
+ * generation.
  */
-public class Buttons extends lifeGUI
-        implements java.awt.event.ActionListener {
+public class Buttons extends lifeGUI {
 
     // fields for counter
-    private int genCount=0;
-    private int length=0;
+    private int genCount = 0;
+    private int length = 0;
     // fields for the buttons
     static javax.swing.JButton nextButton = new javax.swing.JButton(">> ");
     static javax.swing.JButton prevButton = new javax.swing.JButton("<< ");
     static javax.swing.JToolBar toolbar = new JToolBar();
     static ArrayList<int[][]> gridList = new ArrayList<int[][]>();
-
 
     public Buttons() {
         toolbar.add(prevButton, BorderLayout.WEST);
@@ -46,21 +44,11 @@ public class Buttons extends lifeGUI
             }
         });
     }
-    /**
-     * The method from ActionListener
-     * @param e The action that triggered this handler
-     */
-    @Override
-    public void actionPerformed(java.awt.event.ActionEvent e) {
-
-    }
-
 
     public void retrieveGrid(ArrayList<int[][]> l) {
         gridList = l;
-        length = gridList.size()-1;
+        length = gridList.size() - 1;
     }
-
 
     /**
      * method to set next Generation
@@ -75,7 +63,7 @@ public class Buttons extends lifeGUI
         prevButton.setText(String.valueOf(prevIndex(genCount)) + " <<");
 
         // Set next generation
-        //System.out.println(gridList.get(genCount));
+        // System.out.println(gridList.get(genCount));
         super.updateGridLayout(gridList.get(genCount));
 
     }
@@ -93,10 +81,9 @@ public class Buttons extends lifeGUI
         prevButton.setText(String.valueOf(genCount) + " <<");
 
         // Set prev generation
-        //System.out.println(gridList.get(genCount));
+        // System.out.println(gridList.get(genCount));
         super.updateGridLayout(gridList.get(genCount));
     }
-
 
     /**
      * method to get prev index

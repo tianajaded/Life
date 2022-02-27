@@ -19,7 +19,7 @@ package Life;
  */
 public class lifeBoard {
 
-    //Declares integer values for cell states
+    // Declares integer values for cell states
     private int dead = 0;
     private int live = 1;
 
@@ -81,7 +81,7 @@ public class lifeBoard {
                         { 16, 4 },
                         { 16, 5 } } };
 
-        //Call method to create initial grid
+        // Call method to create initial grid
         int[][] grid = generateEmptyBoard(size);
 
         // Iterate through the grid and set the designated cells to live
@@ -95,19 +95,18 @@ public class lifeBoard {
         return grid;
     }
 
-
     /**
      * Counts the neighboring cell states for a selected cell
      *
      * @param grid int square array for the present generation grid
-     * @param x integer row value
-     * @param y integer column value
+     * @param x    integer row value
+     * @param y    integer column value
      *
      * @return count returns integer value with the sum of the neighbor states
      */
     public int countAliveNeighbors(int[][] grid, int x, int y) {
 
-        //Counter
+        // Counter
         int count = 0;
 
         // Cell neighbor location modifiers, default at 1
@@ -129,32 +128,32 @@ public class lifeBoard {
             xDistanceL = 1 - grid.length;
         }
         if (y == grid[0].length) {
-            yDistanceD  = 1 - grid[0].length;
+            yDistanceD = 1 - grid[0].length;
         }
         if (y == 0) {
-            yDistanceU  = 1 - grid[0].length;
+            yDistanceU = 1 - grid[0].length;
         }
 
-                // Center of the board is [i][j], count tallies
-                // values from all surrounding cells in 3x3 matrix
+        // Center of the board is [i][j], count tallies
+        // values from all surrounding cells in 3x3 matrix
 
-                // Column to the left of cell
-                count += grid[x - xDistanceL][y - yDistanceU];
-                count += grid[x - xDistanceL][y];
-                count += grid[x - xDistanceL][y + yDistanceD];
+        // Column to the left of cell
+        count += grid[x - xDistanceL][y - yDistanceU];
+        count += grid[x - xDistanceL][y];
+        count += grid[x - xDistanceL][y + yDistanceD];
 
-                // Column containing cell
-                count += grid[x][y - yDistanceU];
-                count += grid[x][y + yDistanceD];
+        // Column containing cell
+        count += grid[x][y - yDistanceU];
+        count += grid[x][y + yDistanceD];
 
-                // Column to the right of cell
-                count += grid[x + xDistanceR][y - yDistanceU];
-                count += grid[x + xDistanceR][y];
-                count += grid[x + xDistanceR][y + yDistanceD];
+        // Column to the right of cell
+        count += grid[x + xDistanceR][y - yDistanceU];
+        count += grid[x + xDistanceR][y];
+        count += grid[x + xDistanceR][y + yDistanceD];
 
-                return count;
+        return count;
 
-        }
+    }
 
     /**
      * Calculates the grid for the next generation
@@ -171,8 +170,8 @@ public class lifeBoard {
         int liveNeighbors;
 
         // Loop through the 2D grid
-        for (int i=0;i<grid.length-1;i++) {
-            for(int j=0;j<grid[i].length-1;j++) {
+        for (int i = 0; i < grid.length - 1; i++) {
+            for (int j = 0; j < grid[i].length - 1; j++) {
 
                 // Count neighbors for current cell and store value in the future grid
                 liveNeighbors = countAliveNeighbors(grid, i, j);
@@ -184,15 +183,15 @@ public class lifeBoard {
                 if ((grid[i][j] == live) && (liveNeighbors < 2)) {
                     nextGrid[i][j] = dead;
 
-                // Cell is overcrowded:
+                    // Cell is overcrowded:
                 } else if ((grid[i][j] == live) && (liveNeighbors > 3)) {
                     nextGrid[i][j] = dead;
 
-                // Cell birth:
+                    // Cell birth:
                 } else if ((grid[i][j] == dead) && (liveNeighbors == 3)) {
                     nextGrid[i][j] = live;
 
-                // Cell doesn't change:
+                    // Cell doesn't change:
                 } else {
                     nextGrid[i][j] = grid[i][j];
                 }

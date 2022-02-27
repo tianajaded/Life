@@ -13,7 +13,6 @@ public class lifePrint {
     // Default characters for cell states
     private char dead = '.';
     private char live = 'O';
-    private lifeGUI display = new lifeGUI();
     private Buttons btn = new Buttons();
 
     /**
@@ -27,16 +26,15 @@ public class lifePrint {
     public int input(int minimum) {
 
         // Instantiates scanner object
-        Scanner scan = new Scanner( System.in);
+        Scanner scan = new Scanner(System.in);
 
         // Stores integer input
-        int num ;
+        int num;
 
         // Infinite loop
         while (true) {
             // Catch input exceptions
-            try
-            {
+            try {
                 // Trying integer input
                 num = scan.nextInt();
                 // Also throw exception if it isn't greater than limit
@@ -45,9 +43,7 @@ public class lifePrint {
                 } else {
                     break;
                 }
-            }
-            catch (InputMismatchException exception)
-            {
+            } catch (InputMismatchException exception) {
                 // User error message
                 System.out.println("\nPlease enter a valid integer greater than " + minimum + ": \n");
                 // Begin next input
@@ -71,11 +67,11 @@ public class lifePrint {
     public String toString(int[][] grid) {
 
         // Empty string
-        String boardStr="";
+        String boardStr = "";
 
         // Loop through inputted grid
-        for (int i=0;i<grid.length-1;i++) {
-            for(int j=0;j<grid[i].length-1;j++) {
+        for (int i = 0; i < grid.length - 1; i++) {
+            for (int j = 0; j < grid[i].length - 1; j++) {
                 // Check grid cell for live or dead state and update string
                 if (grid[i][j] == 0) {
                     boardStr += dead + " ";
@@ -88,21 +84,18 @@ public class lifePrint {
         }
         return boardStr;
     }
+
     public void GUI(ArrayList<int[][]> gridList) {
-        //Draw window
-        display.drawGridLayout(gridList.get(0));
+        // Draw window
+        btn.drawGridLayout(gridList.get(0));
         btn.retrieveGrid(gridList);
 
-
     }
-    public static void wait(int ms)
-    {
-        try
-        {
+
+    public static void wait(int ms) {
+        try {
             Thread.sleep(ms);
-        }
-        catch(InterruptedException ex)
-        {
+        } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
     }

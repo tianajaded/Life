@@ -3,10 +3,10 @@ package Life;
 import java.awt.*;
 
 /**
-* Description: Component Class for the 'Blank' marker
-*
-* Cell jbutton obj
-*/
+ * Description: Component Class for the 'Blank' marker
+ *
+ * Cell jbutton obj
+ */
 public class lifeCell extends javax.swing.JButton {
     // Default fields, assigns to default color values
     private java.awt.Color lineColor = new java.awt.Color(0, 0, 0);
@@ -46,7 +46,7 @@ public class lifeCell extends javax.swing.JButton {
     /**
      * Method for returning background color of component
      *
-     * @return  backgroundColor Current color settings
+     * @return backgroundColor Current color settings
      */
     public java.awt.Color getBackgroundColor() {
         return backgroundColor;
@@ -69,14 +69,13 @@ public class lifeCell extends javax.swing.JButton {
      */
     @Override
     public void paintComponent(java.awt.Graphics g) {
-        //Inherits paintComponent
+        // Inherits paintComponent
         super.paintComponent(g);
 
-        //Sets the background color for the rectangle
+        // Sets the background color for the rectangle
         g.setColor(backgroundColor);
-        //Draws a borderless rectangle to fill the component cell
+        // Draws a borderless rectangle to fill the component cell
         g.fillRect(0, 0, getWidth(), getHeight());
-
 
     }
 }

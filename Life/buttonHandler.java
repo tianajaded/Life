@@ -6,6 +6,7 @@ package Life;
 public class buttonHandler implements java.awt.event.ActionListener {
     /**
      * Method inherited from ActionListener
+     * 
      * @param e The event source
      */
     @Override
